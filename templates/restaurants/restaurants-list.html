@@ -1,0 +1,35 @@
+{% load static %}
+{% block content %}
+
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Restaurants List</title>
+        <link rel="stylesheet" href="{% static 'css/restaurants_list.css' %}">
+    </head>
+    <body>
+    {% include 'common/nav.html' %}
+    <div class="container">
+        <h1>Restaurants List</h1>
+
+        <div id="restaurant-list">
+            <!-- Dynamic Restaurant Cards -->
+            {% for restaurant in restaurants %}
+                <a href="{% url 'restaurant-detail' restaurant.id %}" class="restaurant-card">
+                    <div>
+                        <h2>{{ restaurant.name }}</h2>
+                        <p>{{ restaurant.location.address }}, {{ restaurant.location.city }}</p>
+                        {% if restaurant.image %}
+                            <img src="{{ restaurant.image }}" alt="{{ restaurant.name }}" class="restaurant-image">
+                        {% else %}
+                            <p>No image available.</p>
+                        {% endif %}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    </body>
+
+{% endblock %}

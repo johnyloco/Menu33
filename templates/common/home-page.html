@@ -1,0 +1,33 @@
+{% load static %}
+{% include 'common/nav.html' %}
+{% block content %}
+<!-- Navigation at the top -->
+
+
+<!-- Header Section -->
+<header>
+    <link rel="stylesheet" href="{% static 'css/home_page.css' %}">
+    <div class="header-container">
+        <img src="{% static 'images/main_page_backgrownd.webp' %}" alt="Description of the image">
+        <h1><a href="{% url 'home_page' %}">Restaurant Guide</a></h1>
+        <p>Welcome to the restaurant guide of Switzerland</p>
+    </div>
+</header>
+
+<!-- Main Content Section -->
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>Be ready for the best menu experience with menu3</p>
+                <p>Here you can find all local menus </p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer Section -->
+<footer>
+    <p>&copy; 2024 Restaurant Guide. All Rights Reserved.</p>
+</footer>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+
+{% block content %}
+{% include 'common/../common/nav.html' %}
+
+<!-- Header Section -->
+<header>
+    <link rel="stylesheet" href="{% static 'css/register_page.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Box</title>
+</header>
+<body>
+    <div class="register-box">
+        <h2>Register</h2>
+        <form action="#" method="POST">
+            {% csrf_token %}
+            
+       
+            <div class="input-group">
+                <label for="email">Email</label>
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                {{ form.password1 }}
+                {{ form.password.errors }}
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">Confirm Password</label>
+                {{ form.password2 }}
+                {{ form.password2.errors }} 
+            </div>
+            <button type="submit">Register</button>
+             <p class="register">You already have an account?
+                    <a href="{% url 'login-page' %}"><i></i>Log in here</a></p>
+        </form>
+    </div>
+</body>
+<!-- Footer Section -->
+
+<footer>
+    <p>&copy; 2024 Restaurant Guide. All Rights Reserved.</p>
+</footer>
+{% endblock %}

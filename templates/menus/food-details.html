@@ -1,0 +1,34 @@
+{% extends 'common/../common/nav.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ food_item.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'common/../common/nav.html' %} <!-- Navigation Bar -->
+    <div class="container">
+        <h1>{{ food_item.name }}</h1>
+        <p><strong>Description:</strong> {{ food_item.description }}</p>
+        <p><strong>Price:</strong> ${{ food_item.price }}</p>
+        <p><strong>Gluten Free:</strong> {{ food_item.gluten_free|yesno:"Yes,No" }}</p>
+        <p><strong>Dairy Free:</strong> {{ food_item.dairy_free|yesno:"Yes,No" }}</p>
+        <p><strong>Vegan:</strong> {{ food_item.vegan|yesno:"Yes,No" }}</p>
+        {% if food_item.image %}
+            <img src="{{ food_item.image }}" alt="{{ food_item.name }}" class="food-image">
+        {% else %}
+            <p>No image available.</p>
+        {% endif %}
+        <a href="{% url 'edit-food' username=food_item.restaurant.user.username menus_slug=food_item.slug %}" class="btn">Edit</a>
+        <a href="{% url 'delete-food' username=food_item.restaurant.user.username menus_slug=food_item.slug %}" class="btn-danger">Delete</a>
+        <a href="{% url 'restaurant-list' %}" class="btn-secondary">Back to Restaurant List</a>
+    </div>
+</body>
+</html>
+
+{% endblock %}

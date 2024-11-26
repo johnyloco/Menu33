@@ -1,0 +1,103 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ restaurant.name }} - Menu</title>
+    <link rel="stylesheet" href="{% static 'css/restaurant-menu.css' %}">
+</head>
+<body>
+    {% include 'common/../common/nav.html' %}
+    
+    <!-- Background Image -->
+    <div class="menu-background">
+        <!-- Menu Content -->
+        <div class="menu-container">
+            <h1 class="menu-title">{{ restaurant.name }} Menu</h1>
+
+            <!-- Menu Sections -->
+            <div class="menu-section">
+                <h2 class="section-title">Starters</h2>
+                {% if starters %}
+                    <ul class="menu-items">
+                        {% for item in starters %}
+                            <li class="menu-item">
+                                <div class="menu-item-left">
+                                    <h3>
+                                        <a href="{% url 'details-food' restaurant.id item.slug %}" class="menu-item-link">
+                                            {{ item.name }}
+                                        </a>
+                                    </h3>
+                                    <p>{{ item.description }}</p>
+                                </div>
+                                <div class="menu-item-right">
+                                    <p>${{ item.price }}</p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="no-items">No starters available.</p>
+                {% endif %}
+            </div>
+
+            <!-- Main Courses Section -->
+            <div class="menu-section">
+                <h2 class="section-title">Main Courses</h2>
+                {% if main_courses %}
+                    <ul class="menu-items">
+                        {% for item in main_courses %}
+                            <li class="menu-item">
+                                <div class="menu-item-left">
+                                    <h3>
+                                        <a href="{% url 'details-food' restaurant.id item.slug %}" class="menu-item-link">
+                                            {{ item.name }}
+                                        </a>
+                                    </h3>
+                                    <p>{{ item.description }}</p>
+                                </div>
+                                <div class="menu-item-right">
+                                    <p>${{ item.price }}</p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="no-items">No main courses available.</p>
+                {% endif %}
+            </div>
+
+            <!-- Desserts Section -->
+            <div class="menu-section">
+                <h2 class="section-title">Desserts</h2>
+                {% if desserts %}
+                    <ul class="menu-items">
+                        {% for item in desserts %}
+                            <li class="menu-item">
+                                <div class="menu-item-left">
+                                    <h3>
+                                        <a href="{% url 'details-food' restaurant.id item.slug %}" class="menu-item-link">
+                                            {{ item.name }}
+                                        </a>
+                                    </h3>
+                                    <p>{{ item.description }}</p>
+                                </div>
+                                <div class="menu-item-right">
+                                    <p>${{ item.price }}</p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="no-items">No desserts available.</p>
+                {% endif %}
+            </div>
+
+            <a href="{% url 'restaurant-detail' restaurant.id %}" class="back-button">Back to Restaurant</a>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

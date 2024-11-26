@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Guide</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="{% static 'css/nav_style.css' %}">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">
+            <!-- Link to Home Page -->
+            <a class="home" href="{% url 'home_page' %}">
+                <i>Menu3</i>
+            </a>
+        </div>
+
+        <div class="nav-links">
+            <ul class="nav-group">
+                <li class="nav-item">
+                    <!-- Link to Add Food Page -->
+                    <a href="{% url 'restaurant-list' %}"><i>Restaurants</i></a>
+                </li>
+                {% if not request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <!-- Link to Login Page -->
+                        <a href="{% url 'login-page' %}"><i>Login</i></a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Link to Register Page -->
+                        <a href="{% url 'register-page' %}"><i>Register</i></a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <!-- Link to Restaurant List -->
+                        <a href="{% url 'restaurant-list' %}"><i>Restaurants</i></a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Profile Link (if logged in) -->
+                        <a href="{% url 'profile-details' request.user.pk %}">
+                            <i>Profile</i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Logout Form -->
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button class="button" type="submit"><i>Logout</i></button>
+                        </form>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Content Block for Child Templates -->
+{% block content %}{% endblock %}
+
+</body>
+</html>

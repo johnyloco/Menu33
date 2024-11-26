@@ -1,0 +1,34 @@
+
+{% load static %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Food Item</title>
+    <link rel="stylesheet" href="{% static 'css/food_style.css' %}">
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Food Item</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'common/../common/nav.html' %} <!-- Navigation Bar -->
+    <div class="container">
+        <h1>Delete {{ food_item.name }}</h1>
+        <p>Are you sure you want to delete this food item?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-danger">Yes, Delete</button>
+            <a href="{% url 'details-food' username=food_item.restaurant.user.username menus_slug=food_item.slug %}" class="btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
+
+
+{% endblock %}

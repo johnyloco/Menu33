@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="{% static 'css/profile-details.css' %}">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-image">
+                <img src="https://via.placeholder.com/150" alt="Profile Picture">
+            </div>
+            <div class="profile-info">
+                <h1>{{ user.username }}</h1>
+                <p>{{ user.email }}</p>
+                <p><strong>Bio:</strong> {{ user.profile.bio|default:"No bio available" }}</p>
+                <a href="{% url 'profile-edit' request.user.pk %}">Edit Profile</a>
+            </div>
+        </div>
+
+        <div class="profile-details">
+            <h2>My Recent Activities</h2>
+            <ul>
+                <li>Added a new menu item: "Spicy Tacos"</li>
+                <li>Reviewed a restaurant: "Italian Delight"</li>
+                <li>Liked a menu: "Vegan Breakfast Specials"</li>
+                <li>Commented on a dish: "Amazing presentation!"</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

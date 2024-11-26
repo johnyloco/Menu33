@@ -1,0 +1,42 @@
+{% load static %}
+
+{% block content %}
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ restaurant.name }}</title>
+        <link rel="stylesheet" href="{% static 'css/restaurant-details.css' %}">
+    </head>
+    <body>
+    {% include 'common/nav.html' %}
+    <div class="container">
+        <!-- Restaurant Name -->
+        <h1 class="restaurant-name">{{ restaurant.name }}</h1>
+
+        <!-- Description -->
+        <p class="restaurant-description">{{ restaurant.description }}</p>
+
+        <!-- Image -->
+        {% if restaurant.image %}
+            <div class="image-container">
+                <img src="{{ restaurant.image }}" alt="{{ restaurant.name }}">
+            </div>
+        {% else %}
+            <div class="no-image">
+                <p>No image available.</p>
+            </div>
+        {% endif %}
+
+        <!-- Buttons -->
+        <div class="button-container">
+            <a href="{% url 'restaurant-menu' restaurant.id %}" class="menu-button">View Menu</a>
+            <a href="{% url 'restaurant-list' %}" class="back-button">Back to Restaurant List</a>
+        </div>
+    </div>
+    </body>
+    </html>
+
+{% endblock %}
