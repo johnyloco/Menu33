@@ -27,3 +27,4 @@ class Restaurant(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)  # Automatically generate slug from name
         super().save(*args, **kwargs)
+

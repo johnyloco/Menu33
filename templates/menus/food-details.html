@@ -1,34 +1,33 @@
-{% extends 'common/../common/nav.html' %}
 {% load static %}
-
 {% block content %}
-
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ food_item.name }}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{{ food_item.name|default:"Food Item" }}</title>
+    <link rel="stylesheet" href="{% static 'css/menu_items_details.css' %}">
 </head>
+
 <body>
-    {% include 'common/../common/nav.html' %} <!-- Navigation Bar -->
+    <!-- Navigation Bar -->
+    {% include 'common/nav.html' %}
+    
+    <!-- Main Content Section -->
     <div class="container">
-        <h1>{{ food_item.name }}</h1>
-        <p><strong>Description:</strong> {{ food_item.description }}</p>
-        <p><strong>Price:</strong> ${{ food_item.price }}</p>
-        <p><strong>Gluten Free:</strong> {{ food_item.gluten_free|yesno:"Yes,No" }}</p>
-        <p><strong>Dairy Free:</strong> {{ food_item.dairy_free|yesno:"Yes,No" }}</p>
-        <p><strong>Vegan:</strong> {{ food_item.vegan|yesno:"Yes,No" }}</p>
-        {% if food_item.image %}
-            <img src="{{ food_item.image }}" alt="{{ food_item.name }}" class="food-image">
-        {% else %}
-            <p>No image available.</p>
-        {% endif %}
-        <a href="{% url 'edit-food' username=food_item.restaurant.user.username menus_slug=food_item.slug %}" class="btn">Edit</a>
-        <a href="{% url 'delete-food' username=food_item.restaurant.user.username menus_slug=food_item.slug %}" class="btn-danger">Delete</a>
-        <a href="{% url 'restaurant-list' %}" class="btn-secondary">Back to Restaurant List</a>
+        <!-- Food Item Details -->
+        <div class="details-section">
+            <h1>{{ food_item.name|default:"Food Item Name" }}</h1>
+            <p><strong>Description:</strong> {{ food_item.description|default:"No description available." }}</p>
+            <p><strong>Price:</strong> ${{ food_item.price|default:"0.00" }}</p>
+            <p><strong>Gluten Free:</strong> {{ food_item.gluten_free|yesno:"Yes,No" }}</p>
+            <p><strong>Dairy Free:</strong> {{ food_item.dairy_free|yesno:"Yes,No" }}</p>
+            <p><strong>Vegan:</strong> {{ food_item.vegan|yesno:"Yes,No" }}</p>
+        </div>
+
+        <!-- Back Button Section -->
+         
     </div>
 </body>
 </html>
-
 {% endblock %}

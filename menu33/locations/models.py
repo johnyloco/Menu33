@@ -1,3 +1,5 @@
+from urllib.parse import parse_qs, urlparse
+
 from django.db import models
 
 
@@ -32,6 +34,19 @@ class Location(models.Model):
     ]
 
     address = models.CharField(max_length=255)
+    google_maps = models.URLField(max_length=500, blank=True, null=True)
+
+    def get_embed_url(self):
+        if not self.google_maps:
+            return None
+        if "embed" in self.google_maps:
+            return self.google_maps  # Already an embed URL
+        # Generate an embed URL from a regular URL
+        base_embed_url = "https://www.google.com/maps/embed"
+        parsed_url = urlparse(self.google_maps)
+        query = parse_qs(parsed_url.query)
+        return f"{base_embed_url}?q={query.get('q', [''])[0]}"
+
     city = models.CharField(max_length=100)
     canton = models.CharField(max_length=2, choices=SWISS_CANTONS)
 

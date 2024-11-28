@@ -22,4 +22,3 @@ class RestaurantCreateView(CreateView):
     template_name = 'restaurants/restaurant-form.html'  # Template for creating a new restaurant
     success_url = reverse_lazy('restaurant-list')
 
-

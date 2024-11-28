@@ -1,10 +1,34 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>This is the map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ restaurant_name }} - Location</title>
+    <link rel="stylesheet" href="{% static 'css/location.css' %}">
 </head>
 <body>
-this is the map 
+    <div class="container">
+        <!-- Restaurant Name -->
+        <h1 class="restaurant-name">{{ restaurant_name }}</h1>
+
+        <!-- Google Maps Embed -->
+        {% if google_maps_embed_url %}
+            <div class="map-container">
+                <iframe
+                    src="{{ google_maps_embed_url }}"
+                    width="600"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        {% else %}
+            <p>No Google Maps location available for this restaurant.</p>
+        {% endif %}
+    </div>
 </body>
 </html>

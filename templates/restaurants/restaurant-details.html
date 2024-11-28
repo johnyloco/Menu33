@@ -2,22 +2,24 @@
 
 {% block content %}
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ restaurant.name }}</title>
-        <link rel="stylesheet" href="{% static 'css/restaurant-details.css' %}">
-    </head>
-    <body>
-    {% include 'common/nav.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ restaurant.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/restaurant-details.css' %}">
+</head>
+<body>
     <div class="container">
         <!-- Restaurant Name -->
         <h1 class="restaurant-name">{{ restaurant.name }}</h1>
 
         <!-- Description -->
-        <p class="restaurant-description">{{ restaurant.description }}</p>
+        <div class="restaurant-info">
+            <p class="restaurant-description">{{ restaurant.description }}</p>
+            <p class="restaurant-address">{{ restaurant.location.address }}, {{ restaurant.location.city }}</p>
+        </div>
 
         <!-- Image -->
         {% if restaurant.image %}
@@ -34,9 +36,10 @@
         <div class="button-container">
             <a href="{% url 'restaurant-menu' restaurant.id %}" class="menu-button">View Menu</a>
             <a href="{% url 'restaurant-list' %}" class="back-button">Back to Restaurant List</a>
+            <a href="{% url 'location-view' restaurant.location.pk %}" class="map-button">View on Google Maps</a>
         </div>
     </div>
-    </body>
-    </html>
+</body>
+</html>
 
 {% endblock %}
