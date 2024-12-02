@@ -1,16 +1,16 @@
 {% load static %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ restaurant.name }} - Menu</title>
-    <link rel="stylesheet" href="{% static 'css/restaurant-menu.css' %}">
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ restaurant.name }} - Menu</title>
+        <link rel="stylesheet" href="{% static 'css/../../static/css/menu/restaurant-menu.css' %}">
+    </head>
+    <body>
     {% include 'common/nav.html' %}
-    
+
     <!-- Background Image -->
     <div class="menu-background">
         <!-- Menu Content -->
@@ -26,7 +26,8 @@
                             <li class="menu-item">
                                 <div class="menu-item-left">
                                     <h3>
-                                        <a href="{% url 'details-food' restaurant.id item.slug %}" class="menu-item-link">
+                                        <a href="{% url 'details-food' restaurant.id item.slug %}"
+                                           class="menu-item-link">
                                             {{ item.name }}
                                         </a>
                                     </h3>
@@ -52,7 +53,8 @@
                             <li class="menu-item">
                                 <div class="menu-item-left">
                                     <h3>
-                                        <a href="{% url 'details-food' restaurant.id item.slug %}" class="menu-item-link">
+                                        <a href="{% url 'details-food' restaurant.id item.slug %}"
+                                           class="menu-item-link">
                                             {{ item.name }}
                                         </a>
                                     </h3>
@@ -78,7 +80,8 @@
                             <li class="menu-item">
                                 <div class="menu-item-left">
                                     <h3>
-                                        <a href="{% url 'details-food' restaurant.id item.slug %}" class="menu-item-link">
+                                        <a href="{% url 'details-food' restaurant.id item.slug %}"
+                                           class="menu-item-link">
                                             {{ item.name }}
                                         </a>
                                     </h3>
@@ -96,8 +99,9 @@
             </div>
 
             <a href="{% url 'restaurant-detail' restaurant.id %}" class="back-button">Back to Restaurant</a>
+
         </div>
     </div>
-</body>
-</html>
+    </body>
+    </html>
 {% endblock %}

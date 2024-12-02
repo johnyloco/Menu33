@@ -8,37 +8,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ restaurant.name }}</title>
-    <link rel="stylesheet" href="{% static 'css/restaurant-details.css' %}">
+    <link rel="stylesheet" href="{% static 'css/../../static/css/restaurant/restaurant-details.css' %}">
 </head>
 <body>
-    <div class="container">
-        <!-- Restaurant Name -->
-        <h1 class="restaurant-name">{{ restaurant.name }}</h1>
+<div class="container">
+    <div class="restaurant-detail">
+        <h1>{{ restaurant.name }}</h1>
+        <p>{{ restaurant.address }}, {{ restaurant.city }}</p>
 
-        <!-- Description -->
-        <div class="restaurant-info">
-            <p class="restaurant-description">{{ restaurant.description }}</p>
-            <p class="restaurant-address">{{ restaurant.location.address }}, {{ restaurant.location.city }}</p>
-        </div>
-
-        <!-- Image -->
-        {% if restaurant.image %}
-            <div class="image-container">
-                <img src="{{ restaurant.image }}" alt="{{ restaurant.name }}">
-            </div>
-        {% else %}
-            <div class="no-image">
-                <p>No image available.</p>
-            </div>
+        <!-- Edit and Delete Buttons: Visible only to the creator -->
+        {% if user.is_authenticated and user == restaurant.user %}
+            <a href="{% url 'restaurant-edit' restaurant.pk %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'restaurant-delete' restaurant.pk %}" class="btn btn-danger">Delete</a>
         {% endif %}
-
-        <!-- Buttons -->
-        <div class="button-container">
-            <a href="{% url 'restaurant-menu' restaurant.id %}" class="menu-button">View Menu</a>
-            <a href="{% url 'restaurant-list' %}" class="back-button">Back to Restaurant List</a>
-            <a href="{% url 'location-view' restaurant.location.pk %}" class="map-button">View on Google Maps</a>
-        </div>
     </div>
+
+    <!-- Description -->
+    <div class="restaurant-info">
+        <p class="restaurant-description">{{ restaurant.description }}</p>
+        <p class="restaurant-address">{{ restaurant.location.address }}, {{ restaurant.location.city }}</p>
+    </div>
+
+    <!-- Image -->
+    {% if restaurant.image %}
+        <div class="image-container">
+            <img src="{{ restaurant.image }}" alt="{{ restaurant.name }}">
+        </div>
+    {% else %}
+        <div class="no-image">
+            <p>No image available.</p>
+        </div>
+    {% endif %}
+
+    <!-- Buttons -->
+    <div class="button-container">
+        <a href="{% url 'restaurant-menu' restaurant.id %}" class="menu-button">View Menu</a>
+        <a href="{% url 'restaurant-list' %}" class="back-button">Back to Restaurant List</a>
+        <a href="{% url 'location-view' restaurant.location.pk %}" class="map-button">View on Google Maps</a>
+    </div>
+</div>
 </body>
 </html>
 

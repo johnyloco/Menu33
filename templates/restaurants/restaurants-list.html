@@ -1,35 +1,43 @@
+
 {% load static %}
 {% block content %}
 
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Restaurants List</title>
-        <link rel="stylesheet" href="{% static 'css/restaurants_list.css' %}">
-    </head>
-    <body>
-    {% include 'common/nav.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants List</title>
+    <link rel="stylesheet" href="{% static 'css/restaurant/restaurants_list.css' %}">
+</head>
+<body>
     <div class="container">
-        <h1>Restaurants List</h1>
-
+        <div class="header">
+            <h1>Restaurants List</h1>
+            <a href="{% url 'restaurant-create' %}" class="btn btn-primary">Create New Restaurant</a>
+        </div>
         <div id="restaurant-list">
-            <!-- Dynamic Restaurant Cards -->
             {% for restaurant in restaurants %}
-                <a href="{% url 'restaurant-detail' restaurant.id %}" class="restaurant-card">
-                    <div>
-                        <h2>{{ restaurant.name }}</h2>
-                        <p>{{ restaurant.location.address }}, {{ restaurant.location.city }}</p>
-                        {% if restaurant.image %}
-                            <img src="{{ restaurant.image }}" alt="{{ restaurant.name }}" class="restaurant-image">
-                        {% else %}
-                            <p>No image available.</p>
-                        {% endif %}
-                    </div>
-                </a>
+                <div class="restaurant-bubble">
+                    <a href="{% url 'restaurant-detail' restaurant.id %}" class="restaurant-link">
+                        <div class="restaurant-image-container">
+                            {% if restaurant.image %}
+                                <img src="{{ restaurant.image }}" alt="{{ restaurant.name }}" class="restaurant-image">
+                            {% else %}
+                                <div class="no-image">No Image Available</div>
+                            {% endif %}
+                        </div>
+                        <div class="restaurant-info">
+                            <h2 class="restaurant-name">{{ restaurant.name }}</h2>
+                            <p class="restaurant-location">{{ restaurant.location.address }}, {{ restaurant.location.city }}</p>
+                        </div>
+                    </a>
+                </div>
             {% endfor %}
         </div>
     </div>
-    </body>
+</body>
+</html>
 
 {% endblock %}
+

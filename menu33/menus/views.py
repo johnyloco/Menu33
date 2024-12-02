@@ -1,62 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.forms import modelform_factory
-from django.views.generic import DetailView
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
 from .models import FoodItem, DrinkItem, WineItem
 from ..restaurants.models import Restaurant
-
-
-def add_item_view(request):
-    """
-    Handles adding a FoodItem.
-    """
-    FormClass = modelform_factory(FoodItem, exclude=('slug',))
-    if request.method == 'POST':
-        form = FormClass(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('add-food')  # Redirect to the same page or a success URL
-    else:
-        form = FormClass()
-    return render(request, 'menus/add-food.html', {'form': form})
-
-
-def details_food(request, username, menus_slug):
-    """
-    Displays details for a specific FoodItem.
-    """
-    food_item = get_object_or_404(FoodItem, slug=menus_slug)
-    return render(request, 'menus/food-details.html', {'food_item': food_item})
-
-
-def manage_food(request, username, menus_slug):
-    """
-    Handles editing a specific FoodItem.
-    """
-    food_item = get_object_or_404(FoodItem, slug=menus_slug)
-    FormClass = modelform_factory(FoodItem, exclude=('slug',))
-
-    if request.method == "POST":
-        form = FormClass(request.POST, instance=food_item)
-        if form.is_valid():
-            form.save()
-            return redirect('details-food', username=username, menus_slug=menus_slug)
-    else:
-        form = FormClass(instance=food_item)
-    return render(request, 'menus/edit-food.html', {'form': form, 'food_item': food_item})
-
-
-def delete_food(request, username, menus_slug):
-    """
-    Handles deleting a specific FoodItem.
-    """
-    food_item = get_object_or_404(FoodItem, slug=menus_slug)
-
-    if request.method == "POST":
-        food_item.delete()
-        return redirect('add-food')  # Redirect to add-food or another page
-
-    return render(request, 'menus/delete-food.html', {'food_item': food_item})
 
 
 class RestaurantMenuView(DetailView):
@@ -89,4 +37,65 @@ class RestaurantMenuView(DetailView):
         context['wine_items'] = WineItem.objects.filter(restaurants=restaurant)
 
         return context
+
+
+class AddFoodItem(CreateView):
+    model = FoodItem
+    fields = ['name', 'description', 'price', 'section']  # Ensure 'section' is included if required
+    template_name = 'menus/add-food.html'
+    success_url = reverse_lazy('add-food', kwargs={'pk': 1})
+
+    def form_valid(self, form):
+        food_item = form.save(commit=False)
+        food_item.menu = FoodItem  # Associate the food item with the menu
+        food_item.save()
+        return super().form_valid(form)
+
+
+def details_food(request, username, menus_slug):
+    """
+    Displays details for a specific FoodItem.
+    """
+    food_item = get_object_or_404(FoodItem, slug=menus_slug)
+    return render(request, 'menus/food-details.html', {'food_item': food_item})
+
+
+class EditFoodItemView(UpdateView):
+    model = FoodItem
+    fields = ['name', 'description', 'price', 'section']  # Include other fields as necessary
+    template_name = 'menus/edit-food.html'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(
+            FoodItem,
+            slug=self.kwargs['menus_slug'],
+            menu__owner__username=self.kwargs['username']
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('details-food', kwargs={
+            'username': self.kwargs['username'],
+            'menus_slug': self.object.slug
+        })
+
+
+class DeleteFoodItemView(DeleteView):
+    model = FoodItem
+    template_name = 'menus/delete-food.html'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(
+            FoodItem,
+            slug=self.kwargs['menus_slug'],
+            menu__owner__username=self.kwargs['username']
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('menu-detail', kwargs={
+            'username': self.kwargs['username'],
+            'menus_slug': self.object.menu.slug
+        })
+
+
+
 

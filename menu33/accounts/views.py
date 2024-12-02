@@ -1,9 +1,8 @@
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.views import LoginView
-from django.forms import modelform_factory
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DetailView
 from menu33.accounts.forms import AppUserCreationForm, ProfileEditForm
 from menu33.accounts.models import Profile
 
@@ -32,14 +31,26 @@ def profile_delete(request, pk: int):
     return render(request, 'accounts/profile-delete-page.html')
 
 
-def profile_details(request, pk: int):
-    return render(request, 'accounts/profile-details-page.html')
+class ProfileDetailsView(DetailView):
+    model = Profile
+    template_name = 'accounts/profile-details-page.html'
+    context_object_name = 'profile'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Profile, pk=self.kwargs.get('pk'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Extract the email username (before @)
+        email = self.get_object().user.email
+        context['email_username'] = email.split('@')[0]
+        return context
 
 
 class ProfileEditView(UpdateView):
     model = Profile
     form_class = ProfileEditForm
-    template_name = 'accounts/profile-edit.html',
+    template_name = 'accounts/profile-edit.html'
 
     def get_success_url(self):
         return reverse_lazy(

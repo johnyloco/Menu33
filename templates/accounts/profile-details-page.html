@@ -1,34 +1,40 @@
 {% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
-    <link rel="stylesheet" href="{% static 'css/profile-details.css' %}">
+    <title>{{ email_username }}'s Profile</title>
+    <link rel="stylesheet" href="{% static 'css/account/profile_details.css' %}">
 </head>
 <body>
-    <div class="profile-container">
-        <div class="profile-header">
-            <div class="profile-image">
-                <img src="https://via.placeholder.com/150" alt="Profile Picture">
+    <div class="container">
+        <h1>{{ email_username }}'s Profile</h1>
+
+        <!-- Profile Picture -->
+        {% if profile.profile_picture %}
+            <div class="profile-picture">
+                <img src="{{ profile.profile_picture.url }}" alt="Profile Picture of {{ profile.user.username }}">
             </div>
-            <div class="profile-info">
-                <h1>{{ user.username }}</h1>
-                <p>{{ user.email }}</p>
-                <p><strong>Bio:</strong> {{ user.profile.bio|default:"No bio available" }}</p>
-                <a href="{% url 'profile-edit' request.user.pk %}">Edit Profile</a>
+        {% else %}
+            <div class="no-picture">
+                <p>No profile picture available.</p>
             </div>
+        {% endif %}
+
+        <!-- Profile Information -->
+        <div class="profile-info">
+            <p><strong>First Name:</strong> {{ profile.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ profile.last_name }}</p>
+            <p><strong>Date of Birth:</strong> {{ profile.date_of_birth|date:"F d, Y"|default:"Not provided" }}</p>
         </div>
 
-        <div class="profile-details">
-            <h2>My Recent Activities</h2>
-            <ul>
-                <li>Added a new menu item: "Spicy Tacos"</li>
-                <li>Reviewed a restaurant: "Italian Delight"</li>
-                <li>Liked a menu: "Vegan Breakfast Specials"</li>
-                <li>Commented on a dish: "Amazing presentation!"</li>
-            </ul>
+        <!-- Buttons -->
+        <div class="button-container">
+                <a href="{% url 'profile-edit' request.user.pk %}" class="btn-edit">Edit Profile</a>
+                <a href="{% url 'home' %}" class="btn-back">Back to Home</a>
         </div>
     </div>
 </body>

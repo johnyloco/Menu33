@@ -33,7 +33,7 @@ class Location(models.Model):
         ("ZH", "Zurich"),
     ]
 
-    address = models.CharField(max_length=255)
+    address = models.CharField(max_length=255,)
     google_maps = models.URLField(max_length=500, blank=True, null=True)
 
     def get_embed_url(self):

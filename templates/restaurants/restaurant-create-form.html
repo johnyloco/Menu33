@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a New Restaurant</title>
+    <link rel="stylesheet" href="{% static 'css/restaurant/restaurant_create_form.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Create a New Restaurant</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Name -->
+            <div class="form-group">
+                <label for="id_name">Name:</label>
+                {{ form.name }}
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="id_description">Description:</label>
+                {{ form.description }}
+            </div>
+
+            <!-- Image -->
+            <div class="form-group">
+                <label for="id_image">Restaurant Image:</label>
+                {{ form.image }}
+            </div>
+            
+
+            <!-- Address -->
+            <div class="form-group">
+                <label for="id_address">Address:</label>
+                {{ form.address }}
+            </div>
+
+            <!-- Google Maps -->
+            <div class="form-group">
+                <label for="id_google_maps">Google Maps URL:</label>
+                {{ form.google_maps }}
+                <p class="help-text">
+                    To get a Google Maps embed URL:
+                    <ul>
+                        <li>Go to <a href="https://www.google.com/maps" target="_blank">Google Maps</a>.</li>
+                        <li>Search for the location.</li>
+                        <li>Click "Share" and then "Embed a map."</li>
+                        <li>Copy the URL from the iframe's <code>src</code> attribute.</li>
+                        <li>Paste the URL here.</li>
+                    </ul>   
+                </p>
+            </div>
+
+
+            <!-- City -->
+            <div class="form-group">
+                <label for="id_city">City:</label>
+                {{ form.city }}
+            </div>
+
+            <!-- Canton -->
+            <div class="form-group">
+                <label for="id_canton">Canton:</label>
+                {{ form.canton }}
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Create Restaurant</button>
+
+            <!-- Cancel Button -->
+            <a href="{% url 'restaurant-list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

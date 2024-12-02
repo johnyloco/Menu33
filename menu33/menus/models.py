@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.text import slugify
 from menu33.restaurants.models import Restaurant
@@ -11,6 +12,8 @@ SECTION_CHOICES = (
     ('Desserts', 'Desserts'),
     ('Other', 'Other'),
 )
+
+UserModel = get_user_model()
 
 
 class FoodItem(models.Model):
@@ -48,6 +51,11 @@ class FoodItem(models.Model):
 
     slug = models.SlugField(null=True, unique=True, blank=True)
 
+    user = models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE,
+    )
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
@@ -81,6 +89,11 @@ class DrinkItem(models.Model):
         null=True,
         unique=True,
         blank=True,
+    )
+
+    user = models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE,
     )
 
     def save(self, *args, **kwargs):
@@ -123,6 +136,11 @@ class WineItem(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     image = models.URLField(max_length=500, blank=True, null=True)
     slug = models.SlugField(null=True, unique=True, blank=True)
+
+    user = models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE,
+    )
 
     def save(self, *args, **kwargs):
         if not self.slug:
