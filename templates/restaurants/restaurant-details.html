@@ -42,7 +42,7 @@
 
     <!-- Buttons -->
     <div class="button-container">
-        <a href="{% url 'restaurant-menu' restaurant.id %}" class="menu-button">View Menu</a>
+        <a href="{% url 'food-menu' restaurant.id %}" class="menu-button">View Menu</a>
         <a href="{% url 'restaurant-list' %}" class="back-button">Back to Restaurant List</a>
         <a href="{% url 'location-view' restaurant.location.pk %}" class="map-button">View on Google Maps</a>
     </div>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ wine_item.name }}</h1>
+<p>{{ wine_item.description }}</p>
+<p>Type: {{ wine_item.get_wine_type_display }}</p>
+<p>Region: {{ wine_item.region }}</p>
+<p>Grape Variety: {{ wine_item.grape_variety }}</p>
+<p>Vintage: {{ wine_item.vintage }}</p>
+<p>Price: ${{ wine_item.price }}</p>
+<img src="{{ wine_item.image }}" alt="{{ wine_item.name }}">
+<a href="{% url 'wine-edit' pk=wine_item.pk %}">Edit</a>
+<a href="{% url 'wine-delete' pk=wine_item.pk %}">Delete</a>
+<a href="{% url 'wine-menu' restaurant_id=wine_item.restaurants.first.id %}">Back to Menu</a>
+{% endblock %}

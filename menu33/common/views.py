@@ -7,3 +7,5 @@ def home_page(request):
 
 def home(request):
     return render(request, 'common/home.html')
+
+

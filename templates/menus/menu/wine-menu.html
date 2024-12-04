@@ -1,10 +1,119 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ restaurant.name }} - Wine Menu</title>
+    <link rel="stylesheet" href="{% static 'css/wine_menu.css' %}">
 </head>
 <body>
+    <div class="container">
+        <h1>{{ restaurant.name }} - Wine Menu</h1>
 
+        <!-- Sparkling Wines -->
+        <section>
+            <h2>Sparkling Wines</h2>
+            {% if sparkling_wines %}
+                <ul>
+                    {% for wine in sparkling_wines %}
+                        <li>
+                            <strong>{{ wine.name }}</strong> - ${{ wine.price }}
+                            <p>{{ wine.description }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No sparkling wines available.</p>
+            {% endif %}
+        </section>
+
+        <!-- White Wines -->
+        <section>
+            <h2>White Wines</h2>
+            {% if white_wines %}
+                <ul>
+                    {% for wine in white_wines %}
+                        <li>
+                            <strong>{{ wine.name }}</strong> - ${{ wine.price }}
+                            <p>{{ wine.description }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No white wines available.</p>
+            {% endif %}
+        </section>
+
+        <!-- Rosé Wines -->
+        <section>
+            <h2>Rosé Wines</h2>
+            {% if rose_wines %}
+                <ul>
+                    {% for wine in rose_wines %}
+                        <li>
+                            <strong>{{ wine.name }}</strong> - ${{ wine.price }}
+                            <p>{{ wine.description }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No rosé wines available.</p>
+            {% endif %}
+        </section>
+
+        <!-- Red Wines -->
+        <section>
+            <h2>Red Wines</h2>
+            {% if red_wines %}
+                <ul>
+                    {% for wine in red_wines %}
+                        <li>
+                            <strong>{{ wine.name }}</strong> - ${{ wine.price }}
+                            <p>{{ wine.description }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No red wines available.</p>
+            {% endif %}
+        </section>
+
+        <!-- Dessert Wines -->
+        <section>
+            <h2>Dessert Wines</h2>
+            {% if dessert_wines %}
+                <ul>
+                    {% for wine in dessert_wines %}
+                        <li>
+                            <strong>{{ wine.name }}</strong> - ${{ wine.price }}
+                            <p>{{ wine.description }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No dessert wines available.</p>
+            {% endif %}
+        </section>
+
+        <!-- Fortified Wines -->
+        <section>
+            <h2>Fortified Wines</h2>
+            {% if fortified_wines %}
+                <ul>
+                    {% for wine in fortified_wines %}
+                        <li>
+                            <strong>{{ wine.name }}</strong> - ${{ wine.price }}
+                            <p>{{ wine.description }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No fortified wines available.</p>
+            {% endif %}
+        </section>
+
+        <a href="{% url 'restaurant-detail' restaurant.id %}" class="btn btn-secondary">Back to Restaurant</a>
+    </div>
 </body>
 </html>

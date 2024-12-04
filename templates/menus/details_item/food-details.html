@@ -12,7 +12,7 @@
 <body>
     <!-- Navigation Bar -->
     {% include 'common/nav.html' %}
-    
+
     <!-- Main Content Section -->
     <div class="container">
         <!-- Food Item Details -->
@@ -25,9 +25,16 @@
             <p><strong>Vegan:</strong> {{ food_item.vegan|yesno:"Yes,No" }}</p>
         </div>
 
-        <!-- Back Button Section -->
-         
+        <!-- Edit and Delete Buttons -->
+        {% if user.is_authenticated and food_item.restaurant.user == user %}
+            <a href="{% url 'edit-food' pk=food_item.id %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'delete-food' pk=food_item.id %}" class="btn btn-danger">Delete</a>
+        {% endif %}
+    
+        <!-- Back Button -->
+        <a href="{% url 'food-menu' restaurant_id=food_item.restaurant.id %}" class="btn btn-secondary">Back to Menu</a>
     </div>
 </body>
 </html>
 {% endblock %}
+

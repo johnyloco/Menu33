@@ -1,0 +1,16 @@
+
+{% block content %}
+<h1>{{ restaurant.name }} - Drink Menu</h1>
+<ul>
+    {% for drink in drink_items %}
+    <li>
+        <h3><a href="{% url 'details-drink' username=drink.user.username menus_slug=drink.slug %}">{{ drink.name }}</a></h3>
+        <p>{{ drink.description }}</p>
+        <p>Price: ${{ drink.price }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% if user.is_authenticated and user == restaurant.owner %}
+<a href="{% url 'add-drink' username=user.username restaurant_id=restaurant.id %}">Add New Drink</a>
+{% endif %}
+{% endblock %}

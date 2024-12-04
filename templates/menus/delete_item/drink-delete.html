@@ -1,0 +1,10 @@
+
+{% block content %}
+<h1>Delete Drink</h1>
+<p>Are you sure you want to delete "{{ drink_item.name }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+<a href="{% url 'details-drink' username=user.username menus_slug=drink_item.slug %}">Cancel</a>
+{% endblock %}

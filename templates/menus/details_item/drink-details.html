@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ drink_item.name }}</h1>
+<p>{{ drink_item.description }}</p>
+<p>Price: ${{ drink_item.price }}</p>
+<img src="{{ drink_item.image }}" alt="{{ drink_item.name }}">
+{% if user.is_authenticated and user == drink_item.user %}
+<a href="{% url 'edit-drink' username=user.username menus_slug=drink_item.slug %}">Edit</a>
+<a href="{% url 'delete-drink' username=user.username menus_slug=drink_item.slug %}">Delete</a>
+{% endif %}
+<a href="{% url 'restaurant-menu' restaurant_id=drink_item.restaurant.id %}">Back to Menu</a>
+{% endblock %}
