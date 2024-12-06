@@ -1,0 +1,124 @@
+
+/* Background Image */
+.menu-background {
+    background-image: url("{% static 'images/menu-background.png' %}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+/* Menu Container */
+.menu-container {
+    background-color: #fff;
+    max-width: 700px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+}
+
+/* Title */
+.menu-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Navigation Buttons */
+.menu-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.menu-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+    background-color: #0056b3;
+}
+
+/* Menu Sections */
+.menu-section {
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 22px;
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}
+
+/* Menu Items */
+.menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item-left {
+    max-width: 70%;
+}
+
+.menu-item-left h3 {
+    font-size: 18px;
+    margin: 0 0 5px;
+    color: #333;
+}
+
+.menu-item-left p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.menu-item-right {
+    text-align: right;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Back Button */
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #6c757d;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+}

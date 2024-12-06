@@ -1,0 +1,102 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #333;
+    color: #ffffff;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo styles */
+.logo a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo a:hover {
+    color: #ffa500;
+}
+
+/* Navbar links */
+.nav-links {
+    display: flex;
+}
+
+.nav-group {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-item a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+.nav-item a:hover {
+    color: #ffa500; /* Highlight color on hover */
+}
+
+/* Button styles */
+.button {
+    background-color: #ffa500;
+    color: #ffffff;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #e69500; /* Darker orange on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Hide navbar links on smaller screens */
+    }
+
+    .logo a.home {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 769px) {
+    /* If you want to show the links again on larger screens */
+    .nav-links {
+        display: flex;
+    }
+}
