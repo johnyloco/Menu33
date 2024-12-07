@@ -4,6 +4,7 @@ from menu33.accounts import views
 
 
 urlpatterns = [
+    path('', views.homepage_logged_in, name='home'),
     path('login/', views.AppUserLoginView.as_view(), name='login-page'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('register/', views.AppUserRegisterView.as_view(), name='register-page'),
