@@ -33,7 +33,11 @@ DEBUG = os.getenv('DEBUG', config('DEBUG')) == "True"
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS')).split(', ')
 
-CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', config('CSRF_TRUSTED_ORIGINS', [])).split(', ')
+CSRF_TRUSTED_ORIGINS = [
+    'https://127.0.0.1',
+    'https://localhost',
+    'https://menus-g0h7hgb2hxgdehft.switzerlandnorth-01.azurewebsites.net',
+]
 
 # Application definition
 MY_APPS = [
