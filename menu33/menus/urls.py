@@ -16,7 +16,7 @@ urlpatterns = [
     # Wine URLS
 
     path('restaurants/<int:restaurant_id>/wine-menu/', RestaurantWineMenuView.as_view(), name='wine-menu'),
-    path('restaurants/<int:restaurant_id>/wine/add/', AddWineItemView.as_view(), name='wine-add'),
+    path('menus/<int:restaurant_id>/wine/add/', AddWineItemView.as_view(), name='wine-add'),
     path('wine/<int:pk>/edit/', EditWineItemView.as_view(), name='wine-edit'),
     path('wine/<int:pk>/delete/', DeleteWineItemView.as_view(), name='wine-delete'),
     path('wine/<int:pk>/', DetailsWineItemView.as_view(), name='wine-details'),

@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView
 from menu33.accounts.forms import AppUserCreationForm, ProfileEditForm
@@ -28,7 +28,11 @@ class AppUserRegisterView(CreateView):
 
 
 def profile_delete(request, pk: int):
-    return render(request, 'accounts/profile-delete-page.html')
+    profile = get_object_or_404(Profile, pk=pk)
+    if request.method == 'POST':  # Handle deletion only on POST requests
+        profile.delete()
+        return redirect('home-page')  # Redirect to home after deletion
+    return render(request, 'accounts/profile-delete-page.html', {'profile': profile})
 
 
 class ProfileDetailsView(DetailView):

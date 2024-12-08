@@ -1,22 +1,20 @@
 {% load static %}
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ email_username }}'s Profile</title>
-    <link rel="stylesheet" href="{% static 'css/account/profile_details.css' %}">
-</head>
-<body>
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ email_username }}'s Profile</title>
+        <link rel="stylesheet" href="{% static 'css/account/profile_details.css' %}">
+    </head>
+    <body>
     <div class="container">
         <h1>{{ email_username }}'s Profile</h1>
 
         <!-- Profile Picture -->
         {% if profile.profile_picture %}
             <div class="profile-picture">
-                <img src="{{ profile.profile_picture.url }}" alt="Profile Picture of {{ profile.user.username }}">
+                <img src="{{ profile.profile_picture }}" alt="Profile Picture of {{ profile.user.username }}">
             </div>
         {% else %}
             <div class="no-picture">
@@ -33,9 +31,11 @@
 
         <!-- Buttons -->
         <div class="button-container">
-                <a href="{% url 'profile-edit' request.user.pk %}" class="btn-edit">Edit Profile</a>
-                <a href="{% url 'home' %}" class="btn-back">Back to Home</a>
+            <a href="{% url 'profile-edit' request.user.pk %}" class="btn-edit">Edit Profile</a>
+            <a href="{% url 'home' %}" class="btn-back">Back to Home</a>
         </div>
     </div>
-</body>
-</html>
+    </body>
+
+
+{% endblock %}

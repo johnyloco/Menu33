@@ -43,10 +43,10 @@ class FoodItem(models.Model):
     vegan = models.BooleanField(
         default=False,
     )
-    image = models.URLField(
-        max_length=500,
+    image = models.ImageField(
+        upload_to='food_images/',  # Directory where images will be uploaded
         blank=True,
-        null=True,
+        null=True
     )
 
     slug = models.SlugField(null=True, unique=True, blank=True)

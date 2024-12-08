@@ -6,7 +6,6 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 
 from menu33.menus.forms import FoodItemForm
 from menu33.menus.models import FoodItem
-from django.urls import reverse
 
 from menu33.restaurants.models import Restaurant
 

@@ -5,6 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-
+    <form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete your profile?</p>
+    <button type="submit">Yes, Delete</button>
+        <button type="submit">No</button>
+</form>
 </body>
 </html>
