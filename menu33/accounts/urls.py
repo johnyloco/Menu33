@@ -14,5 +14,5 @@ urlpatterns = [
     path('register/', views.AppUserRegisterView.as_view(), name='register-page'),
     path('profile/<int:pk>/', views.ProfileDetailsView.as_view(), name='profile-details'),
     path('profile/<int:pk>/edit/', views.ProfileEditView.as_view(), name='profile-edit'),
-    path('profile/<int:pk>/delete/', views.profile_delete, name='profile-delete'),
+    path('profile/<int:pk>/delete/', views.ProfileDeleteView.as_view(), name='profile-delete'),
 ]

@@ -1,10 +1,15 @@
 from django.contrib.auth import get_user_model, login
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseForbidden
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.views.generic import CreateView, UpdateView, DetailView, DeleteView
+
 from menu33.accounts.forms import AppUserCreationForm, ProfileEditForm
 from menu33.accounts.models import Profile
+from .mixins import CustomPermissionMixin
+from .tests import is_profile_owner
 
 UserModel = get_user_model()
 
@@ -27,21 +32,23 @@ class AppUserRegisterView(CreateView):
         return response
 
 
-def profile_delete(request, pk: int):
-    profile = get_object_or_404(Profile, pk=pk)
-    if request.method == 'POST':  # Handle deletion only on POST requests
-        profile.delete()
-        return redirect('home-page')  # Redirect to home after deletion
-    return render(request, 'accounts/profile-delete-page.html', {'profile': profile})
+class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Profile
+    template_name = 'accounts/profile-delete-page.html'
+    success_url = reverse_lazy('home-page')  # Redirect to home after successful deletion
+
+    def test_func(self):
+        # Use the reusable function for permission check
+        return is_profile_owner(self)
 
 
 class ProfileDetailsView(DetailView):
-    model = Profile
+    model = UserModel
     template_name = 'accounts/profile-details-page.html'
     context_object_name = 'profile'
 
     def get_object(self, queryset=None):
-        return get_object_or_404(Profile, pk=self.kwargs.get('pk'))
+        return get_object_or_404(Profile, user__pk=self.kwargs['pk'])
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -51,16 +58,22 @@ class ProfileDetailsView(DetailView):
         return context
 
 
-class ProfileEditView(UpdateView):
+class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     form_class = ProfileEditForm
     template_name = 'accounts/profile-edit.html'
 
+    def get_object(self, queryset=None):
+        # Allow the user to edit only their profile
+        return get_object_or_404(Profile, user=self.request.user)
+
     def get_success_url(self):
-        return reverse_lazy(
-            'profile-details',
-            kwargs={'pk': self.object.pk}
-        )
+        # Redirect to the profile details page after a successful edit
+        return reverse_lazy('profile-details', kwargs={'pk': self.request.user.pk})
+
+    def test_func(self):
+        # Use the reusable function for permission check
+        return is_profile_owner(self)
 
 
 def homepage_logged_in(request):
