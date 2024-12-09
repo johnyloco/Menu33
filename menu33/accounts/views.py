@@ -42,19 +42,15 @@ class ProfileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return is_profile_owner(self)
 
 
-class ProfileDetailsView(DetailView):
+class ProfileDetailsView(LoginRequiredMixin, DetailView):
     model = UserModel
     template_name = 'accounts/profile-details-page.html'
-    context_object_name = 'profile'
-
-    def get_object(self, queryset=None):
-        return get_object_or_404(Profile, user__pk=self.kwargs['pk'])
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Extract the email username (before @)
-        email = self.get_object().user.email
-        context['email_username'] = email.split('@')[0]
+        #email = self.get_object().user.email
+        #context['email_username'] = email.split('@')[0]
         return context
 
 
