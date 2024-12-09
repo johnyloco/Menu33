@@ -1,37 +1,53 @@
+
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Details</title>
-    <link rel="stylesheet" href="{% static 'css/account/profile.css' %}">
-</head>
-<body>
+{% block content %}
+    <head>
+
+        <link rel="stylesheet" href="{% static 'css/account/profile_details.css' %}">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Profile Details</title>
+    </head>
+    <body>
+
     <div class="container">
-        <h1>Profile Details</h1>
-
-        <!-- Profile Information -->
         <div class="profile-details">
-            <div class="profile-picture">
-                <img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
-            </div>
+            <h1>Profile Details</h1>
 
-            <div class="profile-info">
-                <p><strong>First Name:</strong> {{ profile.first_name }}</p>
-                <p><strong>Last Name:</strong> {{ profile.last_name }}</p>
-                <p><strong>Date of Birth:</strong> {{ profile.date_of_birth }}</p>
-                <p><strong>Email:</strong> {{ profile.user.email }}</p>
-            </div>
-        </div>
+            <!-- Display Profile Picture -->
+            {% if object.profile.profile_picture %}
+                <img src="{{ object.profile.profile_picture }}" alt="Profile Picture"
+                     style="width: 150px; height: 150px; border-radius: 50%;">
+            {% else %}
+                <p>No profile picture available.</p>
+            {% endif %}
 
-        <!-- Action Buttons -->
-        <div class="button-container">
-            <div class="button-container">
-            <a href="{% url 'profile-edit' request.user.pk %}" class="btn-edit">Edit Profile</a>
-                <a href="{% url 'profile-delete' request.user.pk %}" class="btn-edit">Delete Profile</a>
-            <a href="{% url 'home' %}" class="btn-back">Back to Home</a>
-        </div>
+            <!-- Display First Name -->
+            <p><strong>First Name:</strong> {{ object.profile.first_name }}</p>
+
+            <!-- Display Last Name -->
+            <p><strong>Last Name:</strong> {{ object.profile.last_name }}</p>
+
+            <!-- Display Date of Birth -->
+            <p><strong>Date of Birth:</strong> {{ object.profile.date_of_birth|date:"F j, Y" }}</p>
+
+            <!-- Buttons -->
+            <div class="buttons">
+                {% if request.user.pk == object.pk %}
+                    <!-- Edit Profile Button -->
+                    <a href="{% url 'profile-edit' object.pk %}" class="btn btn-primary">Edit Profile</a>
+
+                    <!-- Delete Profile Button -->
+                    <a href="{% url 'profile-delete' object.pk %}" class="btn btn-danger" style="margin-left: 10px;">Delete
+                        Profile</a>
+                {% endif %}
+                <!-- Home Button -->
+                <a href="{% url 'home' %}" class="btn btn-secondary" style="margin-left: 10px;">Home</a>
+            </div>
         </div>
     </div>
+    </body>
+
+{% endblock %}
+

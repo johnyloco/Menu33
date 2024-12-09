@@ -15,7 +15,7 @@ class AppUserChangeForm(UserChangeForm):
 class AppUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = UserModel
-        fields = ['email',]
+        fields = ('email',)
 
 
 class ProfileEditForm(forms.ModelForm):

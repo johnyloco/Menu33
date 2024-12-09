@@ -1,15 +1,27 @@
+{% load static %}
+{% include 'common/../common/nav.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Profile</title>
+    <link rel="stylesheet" href="{% static 'css/account/profile_delete.css' %}">
 </head>
 <body>
-    <form method="post">
-    {% csrf_token %}
-    <p>Are you sure you want to delete your profile?</p>
-    <button type="submit">Yes, Delete</button>
-        <button type="submit">No</button>
-</form>
+    <div class="container">
+        <h1>Delete Profile</h1>
+        <form method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete your profile? This action cannot be undone. </p>
+            <p>With this action ALL YOUR POSTS WILL BE DELETED ! </p>
+            <p>If you want to hide your name and profile information, you can just empty the string. </p>
+            <!-- Yes, Delete Button -->
+            <button type="submit" class="btn-delete">Yes, Delete</button>
+            
+            <!-- No, Cancel Button -->
+            <a href="{% url 'profile-details' request.user.pk %}" class="btn-cancel">No</a>
+        </form>
+    </div>
 </body>
 </html>

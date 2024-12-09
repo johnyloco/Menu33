@@ -16,39 +16,33 @@
         <div class="logo">
             <!-- Link to Home Page -->
             <a class="home" href="{% url 'home_page' %}">
-                <i>Menu3</i>
+                <i>Home</i>
             </a>
         </div>
 
         <div class="nav-links">
             <ul class="nav-group">
                 <li class="nav-item">
-                    <!-- Link to Add Food Page -->
+                    <!-- Link to Restaurant List -->
                     <a href="{% url 'restaurant-list' %}"><i>Restaurants</i></a>
                 </li>
-                {% if not request.user.is_authenticated %}
+                {% if not user.is_authenticated %}
                     <li class="nav-item">
                         <!-- Link to Login Page -->
-                        <a href="{% url 'login-page' %}"><i>Login</i></a>
+                        <a href="{% url 'login-page' %}" class="button"><i>Login</i></a>
                     </li>
                     <li class="nav-item">
                         <!-- Link to Register Page -->
-                        <a href="{% url 'register-page' %}"><i>Register</i></a>
+                        <a href="{% url 'register-page' %}" class="button"><i>Register</i></a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <!-- Link to Restaurant List -->
-                        <a href="{% url 'restaurant-list' %}"><i>Restaurants</i></a>
-                    </li>
-                    <li class="nav-item">
-                        <!-- Profile Link (if logged in) -->
-                        <a href="{% url 'profile-details' request.user.pk %}">
-                            <i>Profile</i>
-                        </a>
+                        <!-- Profile Link -->
+                        <a href="{% url 'profile-details' user.pk %}" class="button"><i>Profile</i></a>
                     </li>
                     <li class="nav-item">
                         <!-- Logout Form -->
-                        <form method="post" action="{% url 'logout' %}">
+                        <form method="post" action="{% url 'logout' %}" style="display: inline;">
                             {% csrf_token %}
                             <button class="button" type="submit"><i>Logout</i></button>
                         </form>
@@ -60,7 +54,10 @@
 </nav>
 
 <!-- Content Block for Child Templates -->
-{% block content %}{% endblock %}
-
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
 </body>
 </html>
+

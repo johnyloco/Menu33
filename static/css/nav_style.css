@@ -1,4 +1,4 @@
-/* Reset some default styles */
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -8,17 +8,19 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
+    margin-top: 60px; /* Space for fixed navbar */
 }
 
-/* Navbar styles */
+/* Navbar Styles */
 .navbar {
-    background-color: #333;
+    background-color: #333; /* Same color always */
     color: #ffffff;
     padding: 10px 0;
     position: fixed;
-    width: 100%;
     top: 0;
+    width: 100%;
     z-index: 1000;
+    text-align: center; /* Center all text inside the navbar */
 }
 
 .container {
@@ -26,27 +28,30 @@ body {
     margin: 0 auto;
     padding: 0 15px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column; /* Stack logo and navigation links */
+    align-items: center; /* Center all items horizontally */
+    justify-content: center; /* Center all items vertically */
 }
 
-/* Logo styles */
+/* Logo Styles */
 .logo a {
     color: #ffffff;
     text-decoration: none;
     font-size: 24px;
     font-weight: bold;
-    display: flex;
-    align-items: center;
+    margin-bottom: 10px; /* Space between logo and nav links */
 }
 
 .logo a:hover {
     color: #ffa500;
 }
 
-/* Navbar links */
+/* Navigation Links */
 .nav-links {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    justify-content: center; /* Center the links */
+    gap: 15px;
 }
 
 .nav-group {
@@ -64,39 +69,35 @@ body {
 }
 
 .nav-item a:hover {
-    color: #ffa500; /* Highlight color on hover */
+    color: #ffa500;
 }
 
-/* Button styles */
+/* Button Styles */
 .button {
     background-color: #ffa500;
-    color: #ffffff;
+    color: white;
     border: none;
     padding: 5px 15px;
-    cursor: pointer;
     font-size: 16px;
-    border-radius: 4px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
 .button:hover {
-    background-color: #e69500; /* Darker orange on hover */
+    background-color: #e69500; /* Slightly darker orange */
 }
 
-/* Responsive design */
+/* Responsive Styles */
 @media (max-width: 768px) {
     .nav-links {
-        display: none; /* Hide navbar links on smaller screens */
+        flex-direction: column; /* Stack links vertically */
+        align-items: center;
+        gap: 10px;
     }
 
-    .logo a.home {
+    .logo a {
         font-size: 20px;
-    }
-}
-
-@media (min-width: 769px) {
-    /* If you want to show the links again on larger screens */
-    .nav-links {
-        display: flex;
     }
 }
