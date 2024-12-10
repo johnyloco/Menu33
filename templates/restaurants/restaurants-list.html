@@ -15,10 +15,7 @@
 <body>
 {% include 'common/nav.html' %}
     <div class="container">
-        <div class="header">
-            <h1>Restaurants List</h1>
-            <a href="{% url 'restaurant-create' %}" class="btn btn-primary">Create New Restaurant</a>
-        </div>
+        
         <div id="restaurant-list">
             {% for restaurant in restaurants %}
                 <div class="restaurant-bubble">
@@ -37,6 +34,10 @@
                     </a>
                 </div>
             {% endfor %}
+        </div>
+        <div class="header">
+            <h1>Restaurants List</h1>
+            <a href="{% url 'restaurant-create' %}" class="btn btn-primary">Create New Restaurant</a>
         </div>
     </div>
 </body>
