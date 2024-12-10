@@ -1,13 +1,13 @@
 {% load static %}
 {% include 'common/nav.html' %}
 {% block content %}
-    
+<!-- Navigation at the top -->
+
 
 <!-- Header Section -->
 <header>
     <link rel="stylesheet" href="{% static 'css/home_page.css' %}">
     <div class="header-container">
-        <img src="{% static 'images/main_page_backgrownd.webp' %}" alt="Description of the image">
         <h1><a href="{% url 'home_page' %}">Restaurant Guide</a></h1>
         <p>Welcome to the restaurant guide of Switzerland</p>
     </div>
@@ -18,10 +18,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p>Be ready for the best menu experience with menu3</p>
-                <p>Here you can find all local menus </p>
+                <img src="{% static 'images/main_page_backgrownd.webp' %}" alt="Description of the image">
+
             </div>
         </div>
+    </div>
+    <div class="container">
+        <h2>Be ready for the best menu experience with menu3</h2>
+                <h3>Here you can find all local menus </h3>
+        
     </div>
 </main>
 

@@ -1,0 +1,93 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Container Styling */
+.container {
+    max-width: 500px;
+    width: 100%;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Header Styling */
+.container h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #dc3545; /* Danger color for Delete */
+    margin-bottom: 20px;
+}
+
+/* Text Styling */
+.container p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Button Styles */
+button,
+a {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 10px 5px;
+}
+
+/* Danger Button */
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    button,
+    a {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}

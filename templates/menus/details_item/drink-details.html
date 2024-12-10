@@ -1,12 +1,42 @@
-{% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h1>{{ drink_item.name }}</h1>
-<p>{{ drink_item.description }}</p>
-<p>Price: ${{ drink_item.price }}</p>
-<img src="{{ drink_item.image }}" alt="{{ drink_item.name }}">
-{% if user.is_authenticated and user == drink_item.user %}
-<a href="{% url 'edit-drink' username=user.username menus_slug=drink_item.slug %}">Edit</a>
-<a href="{% url 'delete-drink' username=user.username menus_slug=drink_item.slug %}">Delete</a>
-{% endif %}
-<a href="{% url 'restaurant-menu' restaurant_id=drink_item.restaurant.id %}">Back to Menu</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ drink_item.name|default:"Drink Item" }}</title>
+    <link rel="stylesheet" href="{% static 'css/menu/menu_drink_details.css' %}">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    {% include 'common/nav.html' %}
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <!-- Drink Item Details -->
+        <div class="details-section">
+            <h1>{{ drink_item.name|default:"Drink Item Name" }}</h1>
+            <p><strong>Description:</strong> {{ drink_item.description|default:"No description available." }}</p>
+            <p><strong>Price:</strong> ${{ drink_item.price|default:"0.00" }}</p>
+
+            {% if drink_item.image %}
+                <div class="image-section">
+                    <img src="{{ drink_item.image }}" alt="{{ drink_item.name }}">
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Edit and Delete Buttons -->
+        {% if user.is_authenticated and drink_item.restaurant.user == user %}
+            <a href="{% url 'drink-edit' pk=drink_item.id %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'drink-delete' pk=drink_item.id %}" class="btn btn-danger">Delete</a>
+        {% endif %}
+
+        <!-- Back Button -->
+        <a href="{% url 'drink-menu' restaurant_id=drink_item.restaurant.id %}" class="btn btn-secondary">Back to Menu</a>
+    </div>
+</body>
+</html>
 {% endblock %}

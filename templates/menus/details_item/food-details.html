@@ -27,8 +27,8 @@
 
         <!-- Edit and Delete Buttons -->
         {% if user.is_authenticated and food_item.restaurant.user == user %}
-            <a href="{% url 'edit-food' pk=food_item.id %}" class="btn btn-warning">Edit</a>
-            <a href="{% url 'delete-food' pk=food_item.id %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'food-edit' pk=food_item.id %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'food-delete' pk=food_item.id %}" class="btn btn-danger">Delete</a>
         {% endif %}
     
         <!-- Back Button -->

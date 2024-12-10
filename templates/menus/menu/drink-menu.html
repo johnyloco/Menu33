@@ -1,16 +1,36 @@
+{% load static %}
+<div class="menu-container">
+    <link rel="stylesheet" href="{% static 'css/menu/drink_menu.css' %}">
+    <div class="menu-section">
+        <h2 class="section-title">Drinks</h2>
+        {% if drink_items %}
+            <ul class="menu-items">
+                {% for item in drink_items %}
+                    <li class="menu-item">
+                        <div class="menu-item-left">
+                            <h3>
+                                <a href="{% url 'drink-details' restaurant.id item.slug %}"
+                                   class="menu-item-link">
+                                    {{ item.name }}
+                                </a>
+                            </h3>
+                            <p>{{ item.description }}</p>
+                        </div>
+                        <div class="menu-item-right">
+                            <p>${{ item.price }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-items">No drinks available.</p>
+        {% endif %}
+    </div>
 
-{% block content %}
-<h1>{{ restaurant.name }} - Drink Menu</h1>
-<ul>
-    {% for drink in drink_items %}
-    <li>
-        <h3><a href="{% url 'details-drink' username=drink.user.username menus_slug=drink.slug %}">{{ drink.name }}</a></h3>
-        <p>{{ drink.description }}</p>
-        <p>Price: ${{ drink.price }}</p>
-    </li>
-    {% endfor %}
-</ul>
-{% if user.is_authenticated and user == restaurant.owner %}
-<a href="{% url 'add-drink' username=user.username restaurant_id=restaurant.id %}">Add New Drink</a>
-{% endif %}
-{% endblock %}
+    <a href="{% url 'food-menu' restaurant.id %}" class="back-button">Back to Food Menu</a>
+    {% if user.is_authenticated and restaurant.user == user %}
+        <a href="{% url 'drink-add' restaurant_id=restaurant.id %}" class="btn btn-primary">Add Drink Item</a>
+        
+    {% endif %}
+</div>
+

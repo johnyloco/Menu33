@@ -1,10 +1,28 @@
-
+{% load static %}
 {% block content %}
-<h1>Delete Drink</h1>
-<p>Are you sure you want to delete "{{ drink_item.name }}"?</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Delete</button>
-</form>
-<a href="{% url 'details-drink' username=user.username menus_slug=drink_item.slug %}">Cancel</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Drink Item</title>
+    <link rel="stylesheet" href="{% static 'css/menu/drink_delete.css' %}">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    {% include 'common/nav.html' %}
+
+    <!-- Delete Confirmation -->
+    <div class="container">
+        <h1>Delete Drink Item</h1>
+        <p>Are you sure you want to delete "{{ object.name }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <a href="{% url 'drink-menu' restaurant_id=object.restaurant.id %}" class="btn btn-secondary">Cancel</a>
+    </div>
+</body>
+</html>
 {% endblock %}

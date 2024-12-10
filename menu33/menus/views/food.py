@@ -65,6 +65,3 @@ class DeleteFoodItemView(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         # Redirect to the restaurant's food menu
         return reverse_lazy('food-menu', kwargs={'restaurant_id': self.object.restaurant.id})
-
-
-

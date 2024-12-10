@@ -15,6 +15,36 @@
     text-align: center;
 }
 
+/* Drink Menu Button Container */
+.drink-menu-button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Drink Menu Button Styling */
+.btn-drink-menu {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #17a2b8; /* Light blue for drinks menu */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-drink-menu:hover {
+    background-color: #138496; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.btn-drink-menu:active {
+    background-color: #117a8b; /* Even darker blue on click */
+    transform: translateY(0); /* Reset lift on click */
+}
+
+
 /* Menu Items */
 .menu-items {
     list-style-type: none;
@@ -83,6 +113,7 @@
 }
 
 /* Back and Add Food Buttons */
+
 .back-button, .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -131,4 +162,3 @@
         text-align: left;
     }
 }
-

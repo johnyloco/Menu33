@@ -31,4 +31,3 @@ class AppUserAdmin(UserAdmin):
             },
         ),
     ) #  while creating a new user to chose the visualising fields
-

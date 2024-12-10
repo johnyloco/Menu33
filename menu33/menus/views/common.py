@@ -71,6 +71,12 @@ class RestaurantDrinkView(DetailView):
     template_name = 'menus/menu/drink-menu.html'
     context_object_name = 'restaurant'
 
+    def get_object(self, **kwargs):
+        """
+        Fetch the restaurant by ID.
+        """
+        return get_object_or_404(Restaurant, id=self.kwargs['restaurant_id'])
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         restaurant = self.get_object()

@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Add your CSS file -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
     <!-- Navigation Bar -->
     {% include 'common/../common/nav.html' %}
 
     <!-- Welcome Message -->
-    <div style="text-align: center; margin-top: 50px;">
-        <h1 style="font-size: 3em;">Welcome to MenuS {{ user }}</h1>
+    <div class="welcome-container">
+        <div class="welcome-message">
+            <h1>Welcome to MenuS, {{ user }}</h1>
+            <p>Explore the best restaurants and menus in your city!</p>
+        </div>
     </div>
 
-    <!-- Add additional content below -->
-    <footer style="text-align: center; margin-top: 100px;">
+    <!-- Footer -->
+    <footer>
         <p>&copy; 2024 Restaurant Guide. All Rights Reserved.</p>
     </footer>
 </body>

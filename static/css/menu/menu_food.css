@@ -1,18 +1,43 @@
-/* General Styling for Menu Sections */
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+}
+
+/* Center Menu Section */
+.menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+/* Menu Section */
 .menu-section {
+    max-width: 800px;
     margin: 20px 0;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .section-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: bold;
     color: #333;
-    margin-bottom: 20px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 /* Menu Items */
@@ -28,7 +53,7 @@
     align-items: center;
     padding: 15px;
     margin-bottom: 15px;
-    background-color: #fff;
+    background-color: #f9f9f9;
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
@@ -39,11 +64,7 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Menu Item Left Section */
-.menu-item-left {
-    max-width: 70%;
-}
-
+/* Menu Item Left */
 .menu-item-left h3 {
     font-size: 1.4rem;
     margin: 0 0 5px;
@@ -66,7 +87,14 @@
     margin: 0;
 }
 
-/* Menu Item Right Section */
+/* Dietary Info Styling */
+.item-info {
+    font-size: 0.9rem;
+    color: green; /* Set dietary info text to green */
+    margin-top: 5px;
+}
+
+/* Menu Item Right */
 .menu-item-right {
     text-align: right;
     font-size: 1.2rem;
@@ -74,22 +102,14 @@
     color: #333;
 }
 
-/* No Items Message */
-.no-items {
-    font-size: 1rem;
-    text-align: center;
-    color: #888;
-    margin: 10px 0;
-}
-
-/* Back and Add Food Buttons */
-.back-button, .btn {
+/* Back Button and Add Food Button */
+.back-button,
+.btn-primary {
     display: inline-block;
     padding: 10px 20px;
     font-size: 1rem;
     text-decoration: none;
     border-radius: 4px;
-    cursor: pointer;
     margin-top: 20px;
     text-align: center;
 }
@@ -107,28 +127,9 @@
 .btn-primary {
     background-color: #007bff;
     color: white;
-    border: none;
     transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
     background-color: #0056b3;
 }
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .menu-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .menu-item-left {
-        max-width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .menu-item-right {
-        text-align: left;
-    }
-}
-

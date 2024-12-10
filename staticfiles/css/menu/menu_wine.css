@@ -1,0 +1,164 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Center everything on the page */
+}
+
+/* Main Container */
+.menu-container {
+    max-width: 800px; /* Set a fixed width for the container */
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center the content inside the container */
+}
+
+/* Section Title */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Wine Category Title */
+.category-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #555555;
+    margin: 20px 0 10px;
+    text-align: center;
+}
+
+/* Menu Items List */
+.menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: left;
+}
+
+.menu-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Left Section of Menu Item */
+.menu-item-left {
+    text-align: left;
+    width: 70%; /* Adjust width to prevent overlap */
+    margin: auto 0;
+}
+
+.menu-item-left h3 {
+    font-size: 1.5rem;
+    margin: 0 0 10px;
+    color: #007bff;
+}
+
+.menu-item-left h3 .menu-item-link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+}
+
+.menu-item-left h3 .menu-item-link:hover {
+    color: #0056b3;
+}
+
+.menu-item-left p {
+    font-size: 1rem;
+    color: #555555;
+    margin: 5px 0;
+}
+
+/* Right Section of Menu Item */
+.menu-item-right {
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333333;
+}
+
+/* No Items Message */
+.no-items {
+    font-size: 1.2rem;
+    color: #888888;
+    margin: 20px 0;
+}
+
+/* Buttons */
+.back-button, .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-button {
+    background-color: #6c757d;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s;
+    margin-bottom: 10px;
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+    transform: scale(1.05);
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-container {
+        max-width: 90%; /* Adjust container width on smaller screens */
+    }
+
+    .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu-item-left {
+        width: 100%; /* Adjust to full width */
+    }
+
+    .menu-item-right {
+        text-align: left;
+        width: 100%; /* Adjust to full width */
+        margin-top: 10px;
+    }
+}
