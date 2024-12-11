@@ -1,0 +1,111 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Details Section */
+.details-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.details-section h1 {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.details-section p {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: #555;
+}
+
+.details-section p strong {
+    color: #333;
+}
+
+/* Image Section */
+.image-section {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.image-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+a.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    margin: 10px 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Button Colors */
+.btn-warning {
+    background-color: #ffc107;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .details-section h1 {
+        font-size: 1.5rem;
+    }
+
+    a.btn {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}

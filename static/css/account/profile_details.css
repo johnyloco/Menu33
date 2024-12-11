@@ -7,7 +7,6 @@ body {
     color: #333;
 }
 
-/* Centered Container */
 .container {
     max-width: 600px;
     margin: 50px auto;
@@ -15,111 +14,70 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
-
 
 /* Page Title */
 h1 {
-    text-align: center;
-    color: #007bff;
     font-size: 2rem;
+    color: #007bff;
     margin-bottom: 20px;
-}
-/* Profile Details Container */
-.profile-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center all child elements horizontally */
-    justify-content: center; /* Center all child elements vertically */
-    text-align: center; /* Center-align text inside paragraphs */
-    margin: 0 auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Profile Picture */
-.profile-picture {
-    display: block;
-    margin: 0 auto 20px;
-    border-radius: 50%;
+.profile-picture img {
     width: 150px;
     height: 150px;
+    border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
 }
 
-/* Profile Details Text */
-.profile-details p {
+.no-picture {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Profile Information */
+.profile-info p {
     font-size: 1rem;
     margin: 10px 0;
+}
+
+.profile-info strong {
     color: #555;
-    text-align: center; /* Ensures text is centered */
 }
 
-.profile-details p strong {
-    color: #333;
-}
-
-/* Buttons Box */
-.buttons {
+/* Buttons */
+.button-container {
     margin-top: 20px;
-    background: #f1f1f1;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Button Styles */
-.buttons a {
+.btn-edit, .btn-back {
     display: inline-block;
-    text-decoration: none;
     padding: 10px 20px;
     font-size: 1rem;
     font-weight: bold;
+    color: white;
+    text-decoration: none;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
     margin: 5px;
 }
 
-/* Save Button */
-.buttons .btn-save {
-    background-color: #28a745;
-    color: white;
-}
-
-.buttons .btn-save:hover {
-    background-color: #218838;
-}
-
-/* Cancel or Home Button */
-.buttons .btn-cancel {
-    background-color: #6c757d;
-    color: white;
-}
-
-.buttons .btn-cancel:hover {
-    background-color: #5a6268;
-}
-
-/* Edit Button */
-.buttons .btn-primary {
+.btn-edit {
     background-color: #007bff;
-    color: white;
 }
 
-.buttons .btn-primary:hover {
+.btn-edit:hover {
     background-color: #0056b3;
 }
 
-/* Delete Button */
-.buttons .btn-danger {
-    background-color: #dc3545;
-    color: white;
+.btn-back {
+    background-color: #6c757d;
 }
 
-.buttons .btn-danger:hover {
-    background-color: #c82333;
+.btn-back:hover {
+    background-color: #5a6268;
 }

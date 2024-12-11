@@ -56,12 +56,12 @@ class RestaurantWineMenuView(DetailView):
         restaurant = self.get_object()
 
         # Categorize wine items
-        context['sparkling_wines'] = WineItem.objects.filter(restaurants=restaurant, wine_type='SPARKLING')
-        context['white_wines'] = WineItem.objects.filter(restaurants=restaurant, wine_type='WHITE')
-        context['rose_wines'] = WineItem.objects.filter(restaurants=restaurant, wine_type='ROSE')
-        context['red_wines'] = WineItem.objects.filter(restaurants=restaurant, wine_type='RED')
-        context['dessert_wines'] = WineItem.objects.filter(restaurants=restaurant, wine_type='DESSERT')
-        context['fortified_wines'] = WineItem.objects.filter(restaurants=restaurant, wine_type='FORTIFIED')
+        context['sparkling_wines'] = WineItem.objects.filter(restaurants=restaurant)
+        context['white_wines'] = WineItem.objects.filter(restaurants=restaurant)
+        context['rose_wines'] = WineItem.objects.filter(restaurants=restaurant)
+        context['red_wines'] = WineItem.objects.filter(restaurants=restaurant)
+        context['dessert_wines'] = WineItem.objects.filter(restaurants=restaurant)
+        context['fortified_wines'] = WineItem.objects.filter(restaurants=restaurant)
 
         return context
 

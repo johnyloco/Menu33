@@ -1,4 +1,5 @@
 {% load static %}
+
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -6,12 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ drink_item.name|default:"Drink Item" }}</title>
-    <link rel="stylesheet" href="{% static 'css/menu/menu_drink_details.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu/drink_details.css' %}">
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    {% include 'common/nav.html' %}
 
     <!-- Main Content Section -->
     <div class="container">

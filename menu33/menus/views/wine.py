@@ -41,6 +41,7 @@ class EditWineItemView(UpdateView):
 
 class DeleteWineItemView(DeleteView):
     model = WineItem
+    form_class = WineItemForm
     template_name = 'menus/delete_item/wine-delete.html'
 
     def get_success_url(self):
