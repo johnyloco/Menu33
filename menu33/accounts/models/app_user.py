@@ -9,7 +9,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     use_in_migrations = True
     email = models.EmailField(
         unique=True,
-                              )
+    )
 
     is_active = models.BooleanField(
         default=True,
