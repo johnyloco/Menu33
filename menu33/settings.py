@@ -31,18 +31,10 @@ SECRET_KEY = os.getenv('SECRET_KEY', config('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', config('DEBUG')) == "True"
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-    'menus-g0h7hgb2hxgdehft.switzerlandnorth-01.azurewebsites.net',
-]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS'))
 
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://127.0.0.1',
-    'https://localhost',
-    'https://menus-g0h7hgb2hxgdehft.switzerlandnorth-01.azurewebsites.net',
-]
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', config('CSRF_TRUSTED_ORIGINS'))
 
 # Application definition
 MY_APPS = [

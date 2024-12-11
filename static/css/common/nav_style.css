@@ -1,102 +1,47 @@
-/* Reset some default styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
-}
-
-/* Navbar styles */
+/* Always Black Navbar with White Buttons */
 .navbar {
-    background-color: #333;
-    color: #ffffff;
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+    background-color: #000; /* Always Black */
+    color: #fff; /* White Text */
+    padding: 10px 20px;
 }
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0 15px;
+.navbar .container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Logo styles */
-.logo a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 24px;
-    font-weight: bold;
-    display: flex;
+    justify-content: center; /* Center align buttons */
     align-items: center;
 }
 
-.logo a:hover {
-    color: #ffa500;
-}
-
-/* Navbar links */
-.nav-links {
-    display: flex;
-}
-
-.nav-group {
-    list-style: none;
+.navbar .nav-links {
     display: flex;
     gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.nav-item a {
-    color: #ffffff;
+.navbar .nav-links li {
+    display: inline;
+}
+
+.navbar .nav-links a, .navbar .nav-links button {
     text-decoration: none;
-    font-size: 18px;
-    padding: 5px 10px;
-    transition: color 0.3s ease;
-}
-
-.nav-item a:hover {
-    color: #ffa500; /* Highlight color on hover */
-}
-
-/* Button styles */
-.button {
-    background-color: #ffa500;
-    color: #ffffff;
-    border: none;
-    padding: 5px 15px;
+    background-color: #000; /* Black Buttons */
+    color: #fff; /* White Text */
+    padding: 8px 15px;
+    border: 2px solid #fff; /* White Border */
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.button:hover {
-    background-color: #e69500; /* Darker orange on hover */
+.navbar .nav-links a:hover, .navbar .nav-links button:hover {
+    background-color: #444; /* Dark Gray on Hover */
+    transform: scale(1.05); /* Slight Zoom */
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none; /* Hide navbar links on smaller screens */
-    }
-
-    .logo a.home {
-        font-size: 20px;
-    }
+.navbar .nav-links a:active, .navbar .nav-links button:active {
+    transform: scale(0.95); /* Slight Shrink on Click */
 }
 
-@media (min-width: 769px) {
-    /* If you want to show the links again on larger screens */
-    .nav-links {
-        display: flex;
-    }
-}

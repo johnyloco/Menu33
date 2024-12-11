@@ -118,7 +118,9 @@ class WineItem(models.Model):
         'restaurants.Restaurant',
         related_name="wine_items"
     )
-    name = models.CharField(max_length=100)
+    name = models.CharField(
+        max_length=100
+    )
     description = models.TextField()
     wine_type = models.CharField(
         max_length=50,
@@ -126,16 +128,35 @@ class WineItem(models.Model):
         blank=True,
         null=True
     )
-    region = models.CharField(max_length=100, blank=True, null=True)
-    grape_variety = models.CharField(max_length=100, blank=True, null=True)
+    region = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True
+    )
+    grape_variety = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True
+    )
     vintage = models.IntegerField(
         choices=YEAR_CHOICES,
         blank=True,
         null=True
     )
-    price = models.DecimalField(max_digits=5, decimal_places=2)
-    image = models.URLField(max_length=500, blank=True, null=True)
-    slug = models.SlugField(null=True, unique=True, blank=True)
+    price = models.DecimalField(
+        max_digits=5,
+        decimal_places=2
+    )
+    image = models.URLField(
+        max_length=500,
+        blank=True,
+        null=True,
+    )
+    slug = models.SlugField(
+        null=True,
+        unique=True,
+        blank=True,
+    )
 
     user = models.ForeignKey(
         to=UserModel,

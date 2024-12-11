@@ -1,84 +1,44 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f7f7f7;
-    color: #333;
-    text-align: center; /* Center-aligns text and content */
-}
-
-/* Header Section */
-header {
-    background-color: #007bff;
-    color: white;
-    padding: 40px 20px; /* Adds more padding for emphasis */
+/* Header Styling */
+.header-container {
     text-align: center;
+    padding: 20px 0;
+    background-color: #000; /* Black Background */
+    color: #fff; /* White Text */
 }
 
 .header-container h1 {
-    font-size: 3rem; /* Large letters for the header */
-    margin: 0;
-    font-weight: bold;
-}
-
-.header-container h1 a {
-    text-decoration: none;
-    color: white;
+    font-size: 2.5rem;
+    margin: 10px 0;
 }
 
 .header-container p {
     font-size: 1.2rem;
-    margin-top: 10px;
+    color: #ddd; /* Light Gray */
 }
 
-/* Main Content */
-main {
-    margin-top: 20px;
-}
-
+/* Main Content Styling */
 .container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.container img {
-    max-width: 100%;
-    height: auto;
-    max-height: 800px; /* Limits image height */
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Footer Section */
-footer {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #333;
-    color: white;
     text-align: center;
+    margin: 20px auto;
+    max-width: 800px;
 }
 
-footer p {
-    margin: 0;
-    font-size: 1rem;
+.main-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2.5rem;
-    }
+.text-container h2, .text-container h3 {
+    margin: 10px 0;
+    color: #333; /* Dark Text */
+}
 
-    header p {
-        font-size: 1rem;
-    }
-
-    .container {
-        padding: 15px;
-    }
+/* Footer Styling */
+footer {
+    background-color: #000; /* Black Background */
+    color: #fff; /* White Text */
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
 }

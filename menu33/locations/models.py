@@ -33,8 +33,14 @@ class Location(models.Model):
         ("ZH", "Zurich"),
     ]
 
-    address = models.CharField(max_length=255,)
-    google_maps = models.URLField(max_length=500, blank=True, null=True)
+    address = models.CharField(
+        max_length=255,
+    )
+    google_maps = models.URLField(
+        max_length=500,
+        blank=True,
+        null=True,
+    )
 
     def get_embed_url(self):
         if not self.google_maps:
@@ -47,8 +53,13 @@ class Location(models.Model):
         query = parse_qs(parsed_url.query)
         return f"{base_embed_url}?q={query.get('q', [''])[0]}"
 
-    city = models.CharField(max_length=100)
-    canton = models.CharField(max_length=2, choices=SWISS_CANTONS)
+    city = models.CharField(
+        max_length=100,
+    )
+    canton = models.CharField(
+        max_length=2,
+        choices=SWISS_CANTONS,
+    )
 
     def __str__(self):
         return f"{self.address}, {self.city}, {self.get_canton_display()}"
